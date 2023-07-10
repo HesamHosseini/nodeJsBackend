@@ -2,7 +2,7 @@ const express = require("express");
 const Joi = require("joi");
 const jwt = require("jsonwebtoken");
 const authentication = express.Router();
-
+const { ensureToken } = require("../authMethods/index");
 authentication.post("/login", (req, res) => {
   const schema = Joi.object({
     email: Joi.string()
@@ -25,20 +25,15 @@ authentication.post("/login", (req, res) => {
   });
 });
 authentication.get("/getProtected", ensureToken, (req, res) => {
-  res.json({
-    text: "this is protected",
+  jwt.verify(req.token, "this-is-a-secret", function (err, data) {
+    if (err) {
+      res.status(403).send("unAuthorized");
+    } else {
+      res.json({
+        data,
+        token: jwt.decode(req.token),
+      });
+    }
   });
 });
 module.exports = authentication;
-
-function ensureToken(req, res, next) {
-  const bearerHeader = req.headers["authorization"];
-  if (typeof bearerHeader !== "undefined") {
-    const bearer = bearerHeader.split(" ");
-    const bearerToken = bearer[1];
-    req.token = bearerToken;
-    next();
-  } else {
-    res.sendStatus(403);
-  }
-}
