@@ -8,10 +8,10 @@ const { ensureToken } = require("./authMethods");
 app.use(express.json());
 app.use("/api/courses", ensureToken, courses);
 app.use("/api/store", store);
-app.use("/api/authentication", authentication);
+app.use("/authentication", authentication);
 const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
-  console.log(process.env.PORT);
+
   console.log(`listening on port ${port} ....`);
 });

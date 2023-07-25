@@ -7,8 +7,17 @@ const courses = [
   { id: 2, name: "item2" },
   { id: 3, name: "item3" },
 ];
+router.get("/", (req, res) => {
+ 
+  res.send(courses);
+});
+
 router.get("/:id", (req, res) => {
-  res.send(req.params.id);
+  res.send(
+    courses.find((item) => {
+      item.id == req.params.id;
+    })
+  );
 });
 
 router.post("/", (req, res) => {
