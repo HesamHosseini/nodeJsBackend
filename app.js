@@ -11,13 +11,13 @@ app.use("/api/store", store);
 
 app.use("/authentication", authentication);
 app.get("/", function (req, res) {
-  res.sendFile(path.join(__dirname, "/index.html"));
+  res.send(req.protocol + "://" + req.get("host") + req.originalUrl);
 });
 const port = process.env.PORT || 5000;
 
-app.listen(port, () => {
-  console.log(port);
-  console.log(`listening on port ${port} ....`);
+app.listen(() => {
+ 
+  console.log(`listening on   ....`);
 });
 
 module.exports = app;
