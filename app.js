@@ -11,7 +11,7 @@ app.use("/api/store", store);
 
 app.use("api/authentication", authentication);
 app.get("/", function (req, res) {
-  res.send(req.protocol + "://" + req.get("host") + req.originalUrl);
+  res.send("hi");
 });
 const port = process.env.PORT || 5000;
 
