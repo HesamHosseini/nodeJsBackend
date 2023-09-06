@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const courses = require("./Routes/courses");
 const store = require("./Routes/store");
-const authentication = require("./Routes/Authentication");
+const authentication = require("./Routes/authentication");
 const { ensureToken } = require("./authMethods");
 
 app.use(express.json());
