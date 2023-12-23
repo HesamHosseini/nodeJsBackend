@@ -9,7 +9,7 @@ app.use(express.json());
 app.use("/api/courses", ensureToken, courses);
 app.use("/api/store", store);
 
-app.use("api/authentication", authentication);
+app.use("/api/authentication", authentication);
 app.get("/", function (req, res) {
   res.send("hi");
 });
