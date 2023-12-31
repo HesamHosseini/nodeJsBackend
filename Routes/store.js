@@ -16,6 +16,15 @@ route.get("/products/random/:count", async (req, res) => {
   res.send(await ExecuteQuery(`SELECT * FROM ecommerce_db.products WHERE id >= (SELECT FLOOR( MAX(id) * RAND()) FROM ecommerce_db.products ) LIMIT 0 , ${req.params.count}`));
   //res.send(await ExecuteQuery(`SELECT * from products LIMIT 0 , 3`))
 });
+
+route.get("/products", async (req, res) => {
+  //console.log;
+  res.send(await ExecuteQuery(`SELECT * FROM ecommerce_db.products`));
+});
+route.get("/products/:id", async (req, res) => {
+  //console.log;
+  res.send(await ExecuteQuery(`SELECT * FROM ecommerce_db.products WHERE id == ${req.params.id}`));
+});
 route.get("/category/top5", async (req, res) => {
   res.send(
     await ExecuteQuery(
