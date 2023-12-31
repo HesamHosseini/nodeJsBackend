@@ -23,7 +23,7 @@ route.get("/products", async (req, res) => {
 });
 route.get("/products/:id", async (req, res) => {
   //console.log;
-  res.send(await ExecuteQuery(`SELECT * FROM ecommerce_db.products WHERE id == ${req.params.id}`));
+  res.send(await ExecuteQuery(`SELECT * FROM ecommerce_db.products WHERE id = ${req.params.id}`));
 });
 route.get("/category/top5", async (req, res) => {
   res.send(
