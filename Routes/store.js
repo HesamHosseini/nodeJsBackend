@@ -13,8 +13,8 @@ route.get("/customers", ensureToken, async (req, res) => {
 
 route.get("/products/random/:count", async (req, res) => {
   //console.log;
-  //res.send(await ExecuteQuery(`SELECT * FROM ecommerce_db.products WHERE id >= (SELECT FLOOR( MAX(id) * RAND()) FROM ecommerce_db.products ) LIMIT 0 , ${req.params.count}`));
-  res.send(await ExecuteQuery(`SELECT * from products LIMIT 0 , 3`))
+  res.send(await ExecuteQuery(`SELECT * FROM ecommerce_db.products WHERE id >= (SELECT FLOOR( MAX(id) * RAND()) FROM ecommerce_db.products ) LIMIT 0 , ${req.params.count}`));
+  //res.send(await ExecuteQuery(`SELECT * from products LIMIT 0 , 3`))
 });
 route.get("/category/top5", async (req, res) => {
   res.send(
